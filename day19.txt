@@ -1,0 +1,127 @@
+Decorators:- Passing a function as parameter to another function through the decorator '@' + func(functionname).
+ To this 'func', called function in print is passed as a parameter to 'func'.
+
+------> Normal Method of passing function as parameter to another function
+def goodmorning(func):
+    print("goodmorning")
+    return func
+def hello():
+    return "Hello World"
+
+print(goodmorning(hello()))
+
+OUTPUT:- goodmorning
+         Hello World
+
+-------> Using decorator method.
+=>    In goodmorning function [ greet() and hello() are pass as parameter one by one ]
+
+def goodmorning(func):
+    print("goodmorning")
+    return func
+@goodmorning
+def hello():
+    return "Hello World"
+
+def greet():
+    return "greet"
+
+print(greet())
+print(hello())
+
+OUTPUT:-
+        goodmorning
+        greet
+        Hello World
+
+-----> Using of multiple decorators.
+
+def goodmorning(function):
+    print("goodmorning")
+    return function
+
+def hello(function):
+    print("Hello World")
+    return function
+
+def greet(function):
+    print("greet")
+    return function
+
+@goodmorning
+@hello
+@greet
+
+def hi():
+    return "Welcome"
+def hello():
+    return "Welcomehello"
+
+print(hi())
+
+====> Works in Reverse order 
+                             @greet
+                             @hello
+                             @goodmorning
+
+OUTPUT:-
+greet
+Hello World
+goodmorning
+Welcome
+
+#Getter Method
+#Setter Method
+
+class student:
+   def __init__(self, rollno, name):
+      self.name=name
+      self.rollno=rollno
+rama = student(2, 'rama')
+print(rama.name)
+rama.name='krishna'
+print(rama.name)
+
+OUTPUT:-
+rama
+krishna
+
+
+---------> Getter Method :- Getter method are those variables which fetch the data of private variables to us.
+ex:- bmw.get_carname()
+==> To create a private variable we use _ or __ before the variable.
+
+class cars:
+   def __init__(self, carname, series, price):
+      self._carname = carname
+      self._series = series
+      self._price = price
+   def get_carname(self):
+      return self._carname
+
+bmw = cars('bmw', 7, 1)
+print(bmw.carname)
+print(bmw.get_carname())  ====> output:-  bmw. ====getter methods
+
+
+-------->  Setter Method :- Setter method are those variables that changes the values of private variable.
+ex:- 
+class cars:
+   def __init__(self, carname, series, price):
+      self._carname = carname
+      self._series = series
+      self._price = price
+   def get_carname(self):
+      return self._carname
+   def set_carname(self, carname):
+      self._carname = carname
+bmw = cars('bmw', 7, 1)
+
+print(bmw.get_carname())
+bmw.set_carname('tesla')
+print(bmw.get_carname())
+
+
+OUTPUT:-   bmw
+           tesla
+
